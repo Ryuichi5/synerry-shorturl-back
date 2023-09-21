@@ -36,6 +36,33 @@
       "compilerOptions": {
         "tsConfigPath": "apps/test-server/tsconfig.app.json"
       }
+    },
+    "shorturl-service": {
+      "type": "application",
+      "root": "apps/shorturl-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/shorturl-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/shorturl-service/tsconfig.app.json"
+      }
+    },
+    "auth-service": {
+      "type": "application",
+      "root": "apps/auth-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth-service/tsconfig.app.json"
+      }
+    },
+    "qrurl-service": {
+      "type": "application",
+      "root": "apps/qrurl-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/qrurl-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/qrurl-service/tsconfig.app.json"
+      }
     }
   }
 }
