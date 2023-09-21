@@ -11,8 +11,11 @@ export class Shorturl {
     @Column()
     short_url: string;
 
-    @Column()
+    @Column({default : 0})
     view: Number;
+
+    @Column({ default: null }) // Define the 'user_id' column
+    user_id: number; // Store the user ID
 
     @Column({name :"created_at",type : "timestamp",default :  () => "CURRENT_TIMESTAMP"})
     create_at: Date;

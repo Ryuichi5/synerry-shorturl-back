@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Qrurl } from "apps/qrurl-service/src/typeorm/entities/Qrurl.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity({ name : "users"})
 export class Users {
@@ -13,4 +14,7 @@ export class Users {
 
     @Column({name :"created_at",type : "timestamp",default :  () => "CURRENT_TIMESTAMP"})
     create_at: Date;
+
+   
+
 }

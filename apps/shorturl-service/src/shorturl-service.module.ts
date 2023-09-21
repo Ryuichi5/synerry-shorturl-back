@@ -4,6 +4,7 @@ import { ShorturlServiceService } from './shorturl-service.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from 'dotenv';
 import { Shorturl } from './typeorm/entities/Shorturl.entity';
+import { ShorturlModule } from './shorturl/shorturl.module';
 
 config();
 
@@ -20,7 +21,8 @@ config();
         Shorturl
       ],
       synchronize: true
-    })
+    }),
+    ShorturlModule
   ],
   controllers: [ShorturlServiceController],
   providers: [ShorturlServiceService],

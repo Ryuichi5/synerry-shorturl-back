@@ -20,7 +20,6 @@ export class UsersService {
         } catch (error) {
             
         }
-    
       }
     
 }

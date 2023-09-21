@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 
 @Entity({ name : "qrurl"})
 export class Qrurl {
@@ -11,9 +11,12 @@ export class Qrurl {
     @Column()
     qr_image: string;
 
-    @Column()
-    view: Number;
+    @Column({ default: 0 })
+    view: number;
 
-    @Column({name :"created_at",type : "timestamp",default :  () => "CURRENT_TIMESTAMP"})
+    @Column({ default: null }) // Define the 'user_id' column
+    user_id: number; // Store the user ID
+
+    @Column({ name: "created_at", type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     create_at: Date;
 }

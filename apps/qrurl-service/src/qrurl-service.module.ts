@@ -3,6 +3,7 @@ import { QrurlServiceController } from './qrurl-service.controller';
 import { QrurlServiceService } from './qrurl-service.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Qrurl } from './typeorm/entities/Qrurl.entity';
+import { QrurlModule } from './qrurl/qrurl.module';
 
 
 @Module({
@@ -18,7 +19,8 @@ import { Qrurl } from './typeorm/entities/Qrurl.entity';
         Qrurl
       ],
       synchronize: true
-    })
+    }),
+    QrurlModule
   ],
   controllers: [QrurlServiceController],
   providers: [QrurlServiceService],
