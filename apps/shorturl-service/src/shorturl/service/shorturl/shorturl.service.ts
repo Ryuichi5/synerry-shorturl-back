@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Shorturl } from 'apps/shorturl-service/src/typeorm/entities/Shorturl.entity';
 import { Repository } from 'typeorm';
@@ -19,6 +19,43 @@ export class ShorturlService {
             return this.shorturl.save(newUser);
         } catch (error) {    
         }
+      }
+      
+
+      async createShortUrl(createShortUrlDto: CreateShorturlDto): Promise<Shorturl> {
+        const {full_url}  = createShortUrlDto;
+    
+        // Generate a short URL (you can implement your own logic here)
+        const short_url = this.generateShortUrl();
+    
+        const shortUrlEntity = this.shorturl.create({
+            full_url,
+            short_url,
+        });
+    
+        return this.shorturl.save(shortUrlEntity);
+      }
+      
+      async getOriginalUrl(randomString: string): Promise<string | null> {
+        const shortUrl = await this.shorturl.findOne({ where: { short_url: randomString } });
+    
+        if (!shortUrl) {
+          throw new NotFoundException('Short URL not found Hee');
+        }
+    
+        return shortUrl.full_url;
+      }
+
+      private generateShortUrl(length: number = 6): string {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let shortUrl = '';
+      
+        for (let i = 0; i < length; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          shortUrl += characters.charAt(randomIndex);
+        }
+      
+        return shortUrl;
       }
     
 }
