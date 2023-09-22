@@ -1,4 +1,4 @@
-import { Body, Controller, Get , NotFoundException, Param, Post, Redirect } from '@nestjs/common';
+import { Body, Controller, Get , NotFoundException, Param, ParseIntPipe, Post, Redirect } from '@nestjs/common';
 import { Shorturl } from 'apps/shorturl-service/src/typeorm/entities/Shorturl.entity';
 import { ShorturlService } from '../../service/shorturl/shorturl.service';
 import { CreateShorturlDto } from '../../dto/create-shorturl.dto';
@@ -14,6 +14,10 @@ export class ShorturlController {
       return this.ShorturlService.findAll();
     }
   
+    @Get('users/:user_id')
+    async getShortUrlsByUserId(@Param('user_id', ParseIntPipe) userId: number) {
+      return this.ShorturlService.findShortUrlsByUserId(userId);
+    }
 
     @Post()
     async createUser(@Body() createQrurlDto: CreateShorturlDto): Promise<Shorturl> {

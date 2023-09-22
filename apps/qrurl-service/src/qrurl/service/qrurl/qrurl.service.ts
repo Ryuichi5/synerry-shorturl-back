@@ -13,6 +13,11 @@ export class QrurlService {
       return this.qrurl.find();
     }
 
+          // Add a new method to find short URLs by user ID
+  async findShortUrlsByUserId(userId: number): Promise<Qrurl[]> {
+    return this.qrurl.find({ where: { user_id: userId } });
+  }
+
     async createQrurl(createQrurlDto: CreateQrurlDto): Promise<Qrurl> {
         try {
             const newUser = this.qrurl.create(createQrurlDto);

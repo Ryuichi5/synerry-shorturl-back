@@ -19,10 +19,25 @@ export class UsersService {
       return this.user.find();
     }
 
+    public async findPublicDataById(id : number){
+      const user : Users = await this.findById(id);
+     
+      delete user.password;
+      return user;
+   }
+
+   public async findById(id : number) : Promise<Users>
+   {
+     return (await this.user.find(
+           {
+             where : {id} 
+           }
+     ))[0];
+   }
+
     async createUser(createUserDto: CreateUserDto): Promise<Users> {
       // Check if a user with the same name already exists
       const existingUser = await this.user.findOne({ where: { name: createUserDto.name } });
-  
       if (existingUser) {
         throw new ConflictException('User with this name already exists');
       }
@@ -42,6 +57,7 @@ export class UsersService {
         // Handle error
       }
     }
+
 
     async login(loginUserDto: LoginDto): Promise<{ user: Users; token: string } | null> {
       const user = await this.user.findOne({

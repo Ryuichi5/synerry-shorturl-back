@@ -13,6 +13,11 @@ export class ShorturlService {
       return this.shorturl.find();
     }
 
+      // Add a new method to find short URLs by user ID
+  async findShortUrlsByUserId(userId: number): Promise<Shorturl[]> {
+    return this.shorturl.find({ where: { user_id: userId } });
+  }
+
     async createQrurl(createShorturlDto: CreateShorturlDto): Promise<Shorturl> {
         try {
             const newUser = this.shorturl.create(createShorturlDto);
@@ -23,14 +28,15 @@ export class ShorturlService {
       
 
       async createShortUrl(createShortUrlDto: CreateShorturlDto): Promise<Shorturl> {
-        const {full_url}  = createShortUrlDto;
-    
+        const {full_url , user_id}  = createShortUrlDto;
+
         // Generate a short URL (you can implement your own logic here)
         const short_url = this.generateShortUrl();
     
         const shortUrlEntity = this.shorturl.create({
             full_url,
             short_url,
+            user_id
         });
     
         return this.shorturl.save(shortUrlEntity);

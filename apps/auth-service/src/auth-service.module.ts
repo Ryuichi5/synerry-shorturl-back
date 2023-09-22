@@ -6,6 +6,7 @@ import { Users } from './typeorm/entities/Users.entity';
 import { UsersController } from './users/controllers/users/users.controller';
 import { UsersService } from './users/service/users/users.service';
 import { UsersModule } from './users/users.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [

@@ -1,5 +1,5 @@
 // create-user.dto.ts
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateQrurlDto {
   @IsNotEmpty()
@@ -9,5 +9,9 @@ export class CreateQrurlDto {
   @IsNotEmpty()
   @IsString()
   qr_image: string;
+
+  @IsOptional()
+  @IsNumber()
+  user_id: number | null; // Allow it to be a number or null
 
 }
