@@ -13,7 +13,6 @@ import { JwtModule } from '@nestjs/jwt';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
       username: 'root',
       password: 'jakkapet_2k',
       database: 'synerry',
