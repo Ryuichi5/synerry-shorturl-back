@@ -12,7 +12,7 @@ import { JwtModule } from '@nestjs/jwt';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '45.144.164.74',
       port: 3306,
       username: 'adminroot',
       password: 'jakkapet_2k',
