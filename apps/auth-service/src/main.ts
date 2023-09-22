@@ -11,7 +11,7 @@ async function bootstrap() {
     }));
 
     const corsOptions: CorsOptions = {
-      origin: 'http://127.0.0.1:3000', // Replace with the actual origin of your Nuxt.js frontend
+      origin: 'http://localhost:3000', // Replace with the actual origin of your Nuxt.js frontend
       methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
     };
   
