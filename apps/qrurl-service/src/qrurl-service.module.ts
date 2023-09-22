@@ -13,7 +13,7 @@ import { QrurlModule } from './qrurl/qrurl.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '',
+      password: 'jakkapet_2k',
       database: 'synerry',
       entities: [
         Qrurl
