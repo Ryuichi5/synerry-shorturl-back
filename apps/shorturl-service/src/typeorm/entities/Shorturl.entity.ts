@@ -12,7 +12,7 @@ export class Shorturl {
     short_url: string;
 
     @Column({default : 0})
-    view: Number;
+    view: number;
 
     @Column({ default: null }) // Define the 'user_id' column
     user_id: number; // Store the user ID

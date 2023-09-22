@@ -13,6 +13,24 @@ export class ShorturlService {
       return this.shorturl.find();
     }
 
+    // async findOne(id: string): Promise<Shorturl | undefined> {
+    //   return this.shorturl.findOne({ short_url: id });
+    // }
+
+    async findRandomString(id: string): Promise<Shorturl | undefined> {
+      return this.shorturl.findOne({ where: { short_url: id } });
+    }
+  
+    async update(id: number, data: Partial<Shorturl>): Promise<void> {
+      const shortUrl = await this.shorturl.findOne({ where: { id: id } });
+      if (!shortUrl) {
+        throw new NotFoundException('Short URL not found');
+      }
+      
+      await this.shorturl.update(id, data);
+    }
+
+
       // Add a new method to find short URLs by user ID
   async findShortUrlsByUserId(userId: number): Promise<Shorturl[]> {
     return this.shorturl.find({ where: { user_id: userId } });

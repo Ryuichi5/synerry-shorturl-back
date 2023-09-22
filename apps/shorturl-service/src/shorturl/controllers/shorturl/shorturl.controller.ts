@@ -13,7 +13,7 @@ export class ShorturlController {
     async getUsers(): Promise<Shorturl[]> {
       return this.ShorturlService.findAll();
     }
-  
+ 
     @Get('users/:user_id')
     async getShortUrlsByUserId(@Param('user_id', ParseIntPipe) userId: number) {
       return this.ShorturlService.findShortUrlsByUserId(userId);
@@ -45,5 +45,28 @@ export class ShorturlController {
       return repsonseData;
     }
 
+
+    // Add a new route to handle redirection and update view count
+  @Get('view/:randomString')
+  @Redirect()
+  async increaseView(@Param('randomString') id: string) {
+    console.log('randomString',id)
+    const shortUrl = await this.ShorturlService.findRandomString(id);
+    
+    console.log("shortUrl",shortUrl);
+
+    if (shortUrl) {
+      // Increment the 'view' count
+      shortUrl.view += 1;
+      await this.ShorturlService.update(shortUrl.id, { view: shortUrl.view });
+
+      return('View increase');
+    }else{
+      throw new NotFoundException('Short URL not found');
+    }
+    
+    // Handle cases where the short URL is not found
+
+  }
 
 }
