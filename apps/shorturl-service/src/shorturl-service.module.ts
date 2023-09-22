@@ -12,7 +12,8 @@ config();
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '*',
+      port: 3306,
       username: 'root',
       password: 'jakkapet_2k',
       database: 'synerry',
